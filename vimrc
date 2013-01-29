@@ -21,7 +21,7 @@ set t_Co=256 " set the terminal to 256 color mode
 set modelines=0
 set guicursor=a:blinkon0 
 
-" Parser check (CTRL-L)
+" Parser check
 :autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
 :autocmd FileType php noremap <C-P> :!/opt/lampp/bin/php %<CR>
 
@@ -30,18 +30,14 @@ set guicursor=a:blinkon0
 nnoremap j gj
 nnoremap k gk
 
-" C-g multiple functions: fuku-sushi-giessen.de + sofort.com
-" noremap <C-g> :!./generate_all.sh<CR><CR>
-" noremap <C-g> :!./sync.sh<CR><CR>
-
-" Make vim run sync.sh on save if a sync.sh exeutable exists
-" in current pwd ...
+" Make vim run execute_on_save.sh on save if an execute_on_save.sh 
+" exeutable exists in current pwd ...
 if executable('./execute_on_save.sh')
 	autocmd BufWritePost * :call system('./execute_on_save.sh')
 endif
 
-map <C-j> :FufBuffer <Return>
-map <C-k> :FufFile <Return>
+" map <C-j> :FufBuffer <Return>
+" map <C-k> :FufFile <Return>
 
 set wildmenu
 set showmode
