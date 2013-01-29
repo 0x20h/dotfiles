@@ -1,0 +1,3 @@
+#!/bin/bash
+svn diff --diff-cmd svn_vimdiff ${1}
+
