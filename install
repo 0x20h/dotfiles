@@ -1,0 +1,11 @@
+#/bin/sh
+
+# vim stuff
+cp vimrc ~/.vimrc
+cp -r vim/* ~/.vim
+
+# tmux
+cp tmux.conf ~/.tmux.conf
+
+# copy diff scripts
+cp misc/svn* ~/bin
