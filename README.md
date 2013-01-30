@@ -4,9 +4,14 @@ dotfiles
 My most important config files (tmux, vim, ...)
 
 
-Notes
-=====
+Your .bashrc
+------------
 
- * You should add TERM=xterm-256colors to your .bashrc to have 256 colors if using vim inside tmux.
+To support colors in less and vim etc. put in your .bashrc:
+
+<pre>
+alias tmux='TERM=xterm-256color; tmux -2'
+TERM=screen-256color
+</pre>
 
 
