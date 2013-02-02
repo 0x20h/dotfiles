@@ -1,7 +1,14 @@
 #/bin/sh
 
+cd $(dirname $0)
+
+
 # vim stuff
 cp vimrc ~/.vimrc
+# append private settings, place a private-vimrc in this directory
+cat private-vimrc >> ~/.vimrc
+
+rm -rf ~/.vim/*
 cp -r vim/* ~/.vim
 
 # tmux
@@ -9,3 +16,5 @@ cp tmux.conf ~/.tmux.conf
 
 # copy diff scripts
 cp misc/svn* ~/bin
+
+cd -

@@ -21,23 +21,10 @@ set t_Co=256 " set the terminal to 256 color mode
 set modelines=0
 set guicursor=a:blinkon0 
 
-" Parser check
-:autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
-:autocmd FileType php noremap <C-P> :!/opt/lampp/bin/php %<CR>
-
 " Respect automatic line breaks when going up or down
 " on very long lines.
 nnoremap j gj
 nnoremap k gk
-
-" Make vim run execute_on_save.sh on save if an execute_on_save.sh 
-" exeutable exists in current pwd ...
-if executable('./execute_on_save.sh')
-	autocmd BufWritePost * :call system('./execute_on_save.sh')
-endif
-
-" map <C-j> :FufBuffer <Return>
-" map <C-k> :FufFile <Return>
 
 set wildmenu
 set showmode
@@ -50,7 +37,6 @@ set smartcase
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 " set showmatch
 set backspace=indent,eol,start
-set nofoldenable
 set number
 set ruler
 set showcmd
@@ -59,6 +45,7 @@ set hidden
 set title
 set nobackup
 set noswapfile
+
 syntax on
 
 " Window width for NERDtree
@@ -75,17 +62,33 @@ map <F3> <C-]>
 " use :set list and :set nolist
 set listchars=tab:▸\ ,eol:¬
 
+" Nice colorscheme	
+colorscheme mustang
+hi CursorLine cterm=none " Overwrite cursor line style
+set cursorline
+
+" #############################################################################
+" LANGUAGE SPECIFIC SETTINGS
+" #############################################################################
+
+" Parser check
+:autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
+:autocmd FileType php noremap <C-P> :!/opt/lampp/bin/php %<CR>
+
 " Settings for vimdiff
 if &diff
 	" colorscheme evening
 	set filetype=php
 endif
 
-" Nice colorscheme	
-colorscheme mustang
-hi CursorLine cterm=none " Overwrite cursor line style
-set cursorline
+" Make vim run execute_on_save.sh on save if an execute_on_save.sh 
+" exeutable exists in current pwd ...
+if executable('./execute_on_save.sh')
+	autocmd BufWritePost * :call system('./execute_on_save.sh')
+endif
 
-" Syntastic syntax checker
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': ['sh'] }
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': ['sh', 'rst'] }
 
+" auto make documentation on write
+au! FileType rst set textwidth=80 colorcolumn=80
+au! BufWritePost *.rst :call system('make')
