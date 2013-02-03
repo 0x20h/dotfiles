@@ -15,6 +15,19 @@ cp -r vim/* ~/.vim
 cp tmux.conf ~/.tmux.conf
 
 # copy diff scripts
+if [ ! -d ~/bin ]; then
+	mkdir ~/bin
+fi
+
 cp misc/svn* ~/bin
 
-cd -
+# copy custom bash
+cp bash_custom ~/.bash_custom
+
+grep -q ".bash_custom" ~/.bashrc
+
+if [ $? -ne 0 ]; then
+	echo "adding bash_custom entry to your .bashrc"
+	echo "if [ -f ~/.bash_custom ]; then . ~/.bash_custom; fi" >> ~/.bashrc
+fi
+
