@@ -13,6 +13,8 @@ nmap <leader>t :FufTag<CR>
 nmap <leader>k :FufFile<CR>
 nmap <leader>j :FufBuffer<CR>
 nmap <leader>l :FufBufferTag<CR>
+nmap <leader>o :EnableFastPHPFolds<CR>
+nmap <leader>d :DisablePHPFolds<CR>
 
 filetype off " file type detection is off... why?
 " filetype plugin indent on
