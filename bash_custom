@@ -1,0 +1,10 @@
+export PATH=~/bin:~/dev/java/zookeper-3.4.5/bin:~/dev/java/grails-core/bin:$PATH
+export JAVA_HOME=/usr/lib/jvm/java-7-oracle
+alias crap="grep -Rn --color=auto --exclude-dir=.svn"
+
+# bash options
+set 'bind bell-style none'
+set show-all-if-ambiguous on
+set completion-ignore-case on
+alias tmux='TERM=xterm-256color; tmux -2'
+TERM=screen-256color

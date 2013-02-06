@@ -1,3 +1,0 @@
-[submodule "vim/bundle/phpfolding"]
-	path = vim/bundle/phpfolding
-	url = https://github.com/vim-scripts/phpfolding.vim.git

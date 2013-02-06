@@ -91,6 +91,13 @@ endif
 
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': ['sh', 'rst'] }
 
-" auto make documentation on write
+" auto make rst documentations on write
 au! FileType rst set textwidth=80 colorcolumn=80
 au! BufWritePost *.rst :call system('make')
+
+" php folding
+let php_folding=1
+let php_htmlInStrings=1
+let php_sql_query=1
+let php_noShortTags=1
+set foldlevel=1
