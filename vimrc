@@ -13,8 +13,9 @@ nmap <leader>t :FufTag<CR>
 nmap <leader>k :FufFile<CR>
 nmap <leader>j :FufBuffer<CR>
 nmap <leader>l :FufBufferTag<CR>
-nmap <leader>o :EnableFastPHPFolds<CR>
-nmap <leader>d :DisablePHPFolds<CR>
+" diff view + diff close
+nmap <leader>d :VCSVimDiff<CR>
+nmap <leader>c :bd<CR>
 
 filetype off " file type detection is off... why?
 " filetype plugin indent on
@@ -65,8 +66,8 @@ map <F3> <C-]>
 set listchars=tab:▸\ ,eol:¬
 
 " Nice colorscheme	
-colorscheme mustang
-hi CursorLine cterm=none " Overwrite cursor line style
+colorscheme pablo
+hi CursorLine cterm=underline ctermbg=none " Overwrite cursor line style
 set cursorline
 
 " #############################################################################
