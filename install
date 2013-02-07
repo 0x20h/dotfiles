@@ -5,8 +5,11 @@ cd $(dirname $0)
 
 # vim stuff
 cp vimrc ~/.vimrc
-# append private settings, place a private-vimrc in this directory
-cat private-vimrc >> ~/.vimrc
+
+if [ -f private-vimrc ]; then
+	# append private settings, place a private-vimrc in this directory
+	cat private-vimrc >> ~/.vimrc
+fi
 
 rm -rf ~/.vim/*
 cp -r vim/* ~/.vim
