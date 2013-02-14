@@ -22,7 +22,7 @@ if [ ! -d ~/bin ]; then
 	mkdir ~/bin
 fi
 
-cp misc/sv* ~/bin
+cp misc/* ~/bin
 
 # copy custom bash
 cp bash_custom ~/.bash_custom
