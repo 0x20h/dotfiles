@@ -5,7 +5,8 @@ set nocompatible
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
-filetype off
+filetype plugin on
+"filetype off
 
 set t_Co=256 " set the terminal to 256 color mode
 set modelines=0
@@ -16,7 +17,7 @@ set hlsearch
 set incsearch
 set tabstop=4
 set shiftwidth=4
-set ignorecase
+set noignorecase
 set smartcase
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 "set showmatch
@@ -32,9 +33,9 @@ set noswapfile
 
 syntax on
 
-" Visible whitespace
 " use :set list and :set nolist
 set listchars=tab:▸\ ,eol:¬
+" Visible whitespace
 "set list
 
 " COLORS
@@ -46,6 +47,14 @@ hi PMenu cterm=none ctermbg=black ctermfg=lightgrey
 hi PMenuSel cterm=bold ctermbg=darkgrey ctermfg=white
 hi StatusLine cterm=bold ctermbg=darkgreen ctermfg=white
 hi StatusLineNC cterm=none ctermbg=darkred ctermfg=white
+hi MatchParen ctermbg=21 cterm=bold ctermfg=white
+hi SyntasticWarning ctermbg=yellow cterm=bold ctermfg=red
+
+" DIFF VIEW
+hi DiffAdd term=bold ctermbg=22 ctermfg=255
+hi DiffChange term=bold ctermfg=16 ctermbg=220
+hi DiffDelete term=bold ctermfg=247 ctermbg=196
+hi DiffText term=reverse cterm=bold
 set cursorline
 
 
@@ -69,8 +78,8 @@ nmap <leader>d :VCSVimDiff<CR>
 nmap <leader>c :bd<CR>
 
 " next/prev buffer
-nmap <C-n> :bn<CR>
-nmap <C-m> :bp<CR>
+noremap <C-n> :bn<CR>
+nnoremap <C-m> :bp<CR>
 
 " Window width for NERDtree
 let g:NERDTreeWinSize=50
@@ -86,11 +95,9 @@ set completeopt=longest,menuone
 
 " fast ESC
 inoremap kj <ESC>
+" completion like eclipse
+inoremap <Nul> <C-n>
 
-" open omni completion menu closing previous if open and opening new menu without changing the text
-inoremap <expr> <C-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') . '<C-x><C-o><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
-" open user completion menu closing previous if open and opening new menu without changing the text
-inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') . '<C-x><C-u><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
 " self protection :/
 inoremap <Left>  <NOP>
 inoremap <Right> <NOP>
@@ -109,6 +116,7 @@ inoremap <Down>  <NOP>
 " no auto newline for php files at the end of file
 autocmd BufRead *.php :set binary
 autocmd BufRead *.php :set noendofline
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 " Settings for vimdiff
 if &diff
