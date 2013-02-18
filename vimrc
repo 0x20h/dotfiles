@@ -114,14 +114,8 @@ inoremap <Down>  <NOP>
 " ####################
 
 " no auto newline for php files at the end of file
-autocmd BufRead *.php :set binary
-autocmd BufRead *.php :set noendofline
+autocmd BufRead *.php set binary noendofline
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-
-" Settings for vimdiff
-if &diff
-	set filetype=php
-endif
 
 " Make vim run execute_on_save.sh on save if an execute_on_save.sh 
 " exeutable exists in current pwd ...
@@ -130,7 +124,7 @@ if executable('./execute_on_save.sh')
 endif
 
 " Syntastic settings
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': ['sh', 'rst'] }
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': ['sh', 'rst', 'md'] }
 
 " php folding
 let php_folding=1
@@ -140,9 +134,10 @@ let php_noShortTags=1
 set foldlevel=1
 
 " ####################
-" RsT
+" textfiles
 " ####################
 
-" auto make rst documentations on write
-au! FileType rst set textwidth=80 colorcolumn=80
+au! BufRead *.rst set textwidth=80 colorcolumn=80 expandtab tabstop=4
 au! BufWritePost *.rst :call system('make')
+au! BufRead *.md set textwidth=80 colorcolumn=80 expandtab tabstop=4
+au! FileType xslt,xml set textwidth=80 colorcolumn=80 expandtab tabstop=4
