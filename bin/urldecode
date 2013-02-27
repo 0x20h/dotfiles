@@ -4,3 +4,5 @@ $s = fopen('php://stdin', 'r');
 while (!feof($s)) {
     echo urldecode(fgets($s));
 }
+
+echo PHP_EOL;
