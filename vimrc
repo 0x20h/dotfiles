@@ -80,6 +80,7 @@ nmap <leader>c :bd<CR>
 " next/prev buffer
 noremap <C-n> :bn<CR>
 nnoremap <C-m> :bp<CR>
+nnoremap <C-j> i<CR><ESC>
 
 " Window width for NERDtree
 let g:NERDTreeWinSize=50
@@ -93,8 +94,9 @@ map <F3> <C-]>
 
 set completeopt=longest,menuone
 
+" Insert Mode mappings
 " fast ESC
-inoremap kj <ESC>
+inoremap jj <ESC>
 " completion like eclipse
 inoremap <Nul> <C-n>
 
