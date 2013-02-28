@@ -4,6 +4,7 @@
 import sys, os
 import pickle
 import io
+import re
 
 
 #############
@@ -25,6 +26,16 @@ class TodoItem:
 		self.index = index
 		self.text = text
 		self.done = done
+
+	def matches(self, tag):
+		"""
+		Tests if this item matches the given tag.
+		"""
+		# return self.text.find(tag) != -1
+		return tag.lower() in self.text.lower()
+
+	def tags(self):
+		return re.compile('@\w+').findall(self.text)
 
 
 class TodoList:
@@ -88,21 +99,26 @@ class TodoList:
 		if item: self.todos.remove(item)
 		return item
 		
-	def list(self):
+	def list(self, tag = None):
 		"""
 		Returns all items, that are not yet done.
 		"""
-		result = []
-		for item in self.todos:
-			if not item.done:
-				result.append(item)
+		result = [todo for todo in self.todos if not todo.done]
+		result = [todo for todo in result if tag is None or todo.matches(tag)]
 		return result
+
+	def tags(self):
+		result = []
+		for todo in self.todos:
+			result += todo.tags()
+		return set(result)
 		
-	def listall(self):
+	def listall(self, tag = None):
 		"""
 		Returns all items.
 		"""
-		return self.todos
+		result = [todo for todo in self.todos if tag is None or todo.matches(tag)]
+		return result
 
 
 #############
@@ -120,6 +136,7 @@ def usage():
 	print "\ttodo check <number>        - Mark item as done"
 	print "\ttodo uncheck <number>      - Mark item as todo"
 	print "\ttodo rm <number>           - Remove item"
+	print "\ttodo tags                  - Display tags used"
 	sys.exit(0)
 
 def run(command, args, todolist):
@@ -138,6 +155,8 @@ def run(command, args, todolist):
 		uncheck(args, todolist)
 	elif command == 'rm':
 		rm(args, todolist)
+	elif command == 'tags':
+		tags(args, todolist)
 	else:
 		usage()	
 
@@ -164,14 +183,16 @@ def ls(args, todolist):
 	"""
 	Handler for the ls command.
 	"""
-	for item in todolist.list():
+	tag = args.pop() if len(args) > 0 else None
+	for item in todolist.list(tag):
 		out(item)
 
 def lsall(args, todolist):
 	"""
 	Handler for the lsall command.
 	"""
-	for item in todolist.listall():
+	tag = args.pop() if len(args) > 0 else None
+	for item in todolist.listall(tag):
 		out(item)
 
 def check(args, todolist):
@@ -224,6 +245,11 @@ def rm(args, todolist):
 		out(removed_item)
 	else:
 		print "No such item #" + index + " found."
+
+def tags(args, todolist):
+	tags = todolist.tags()
+	for tag in tags:
+		print tag
 		
 
 #############
@@ -246,7 +272,7 @@ def main():
 		run(sys.argv[1], sys.argv[2:], todolist)
 
 	todoio = io.FileIO(todofile, 'w')
-	pickle.dump(todolist.listall(), todoio)
+	pickle.dump(todolist.todos, todoio)
 	todoio.close()
 
 
