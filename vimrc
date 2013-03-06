@@ -72,7 +72,8 @@ nmap <leader>j :FufBuffer<CR>
 nmap <leader>l :FufBufferTag<CR>
 " CTRL-Shift-R for file search (like eclipse)
 nmap <C-a> :FufCoverageFile<CR>
-
+" CTRL-s doubled for reloading the config
+nnoremap <C-c><C-c> :source ~/.vimrc<CR>
 " diff view + diff close
 nmap <leader>d :VCSVimDiff<CR>
 nmap <leader>c :bd<CR>
@@ -94,9 +95,6 @@ map <F3> <C-]>
 
 set completeopt=longest,menuone
 
-" Insert Mode mappings
-" fast ESC
-inoremap jj <ESC>
 " completion like eclipse
 inoremap <Nul> <C-n>
 
@@ -143,3 +141,12 @@ au! BufRead *.rst set textwidth=80 colorcolumn=80 expandtab tabstop=4
 au! BufWritePost *.rst :call system('make')
 au! BufRead *.md set textwidth=80 colorcolumn=80 expandtab tabstop=4
 au! FileType xslt,xml set textwidth=80 colorcolumn=80 expandtab tabstop=4
+
+" ####################
+" dotfiles
+" ####################
+if (executable('./install')) 
+	autocmd BufWritePost * :call system('./install')
+endif
+
+autocmd Filetype javascript foldmethod=indent foldlevel=0

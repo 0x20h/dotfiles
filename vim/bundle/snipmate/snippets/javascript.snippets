@@ -1,7 +1,6 @@
 # Prototype
 snippet proto
-	${1:class_name}.prototype.${2:method_name} =
-	function(${3:first_argument}) {
+	${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}) {
 		${4:// body...}
 	};
 # Function
@@ -64,11 +63,21 @@ snippet :f
 		${4}
 	}${3:,}
 # setTimeout function
-snippet timeout
+snippet tout
 	setTimeout(function() {${3}}${2}, ${1:10};
-# Get Elements
-snippet get
-	getElementsBy${1:TagName}('${2}')${3}
-# Get Element
-snippet gett
-	getElementBy${1:Id}('${2}')${3}
+snippet /**
+	/**
+	 * ${1:description}
+	 *
+	 * @param ${2:param}
+	 * @return ${3:return}
+	 */
+
+snippet /*c
+	/**
+	 * ${1:Description}
+	 *
+	 * @constructor
+	 * @this {${2:Type}}
+	 * @param ${3:Param}} ${4:Desciption}
+	 */
