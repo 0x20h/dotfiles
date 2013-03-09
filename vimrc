@@ -49,6 +49,8 @@ hi StatusLine cterm=bold ctermbg=darkgreen ctermfg=white
 hi StatusLineNC cterm=none ctermbg=darkred ctermfg=white
 hi MatchParen ctermbg=21 cterm=bold ctermfg=white
 hi SyntasticWarning ctermbg=yellow cterm=bold ctermfg=red
+hi WordError ctermfg=88 cterm=none ctermbg=none
+hi SpellBad ctermbg=88 cterm=none 
 
 " DIFF VIEW
 hi DiffAdd term=bold ctermbg=22 ctermfg=255
@@ -60,6 +62,7 @@ set cursorline
 
 " #############################################################################
 " Key Mappings
+
 " #############################################################################
 
 " The mapleader is a custom defined leader key under which
@@ -104,7 +107,6 @@ inoremap <Right> <NOP>
 inoremap <Up>    <NOP>
 inoremap <Down>  <NOP>
 
-
 " #############################################################################
 " LANGUAGE SPECIFIC SETTINGS
 " #############################################################################
@@ -137,10 +139,10 @@ set foldlevel=1
 " textfiles
 " ####################
 
-au! BufRead *.rst set textwidth=80 colorcolumn=80 expandtab tabstop=4
+au! BufRead *.rst set textwidth=80 colorcolumn=80 expandtab tabstop=4 spell
 au! BufWritePost *.rst :call system('make')
-au! BufRead *.md set textwidth=80 colorcolumn=80 expandtab tabstop=4
-au! FileType xslt,xml set textwidth=80 colorcolumn=80 expandtab tabstop=4
+au! BufRead *.md set textwidth=80 colorcolumn=80 expandtab tabstop=4 spell
+au! FileType xslt,xml set textwidth=80 colorcolumn=80 expandtab tabstop=4 spell
 
 " ####################
 " dotfiles
@@ -149,4 +151,7 @@ if (executable('./install'))
 	autocmd BufWritePost * :call system('./install')
 endif
 
-autocmd Filetype javascript foldmethod=indent foldlevel=0
+autocmd Filetype javascript set foldmethod=indent foldlevel=0
+
+" autoload syntax highlighting for typos
+autocmd BufRead * :source $HOME/.vim/bundle/syntax/typos.vim
