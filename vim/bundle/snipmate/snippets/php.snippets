@@ -5,15 +5,27 @@ snippet /*
 	/**
 	 * ${1}
 	 */
-# Class - post doc
-snippet cd
+# Class doc
+snippet /*c
 	/**
 	 * ${1:...}
 	 *
 	 * @package ${2:default}
 	 * @subpackage ${3:default}
 	 */${4}
-# Class Variable - post doc
+snippet /*m
+	/**
+	 * ${1:...}
+	 *
+	 * @param {$2:type} {$3:variable} {$4:description}
+	 * @return {$5:return type} {$6:decription}
+	 */
+snippet /*v
+	/**
+	 * ${1:...}
+	 *
+	 * @var {$2:type} {$3:description}
+	 */
 snippet case
 	case '${1:value}':
 		${2:// code...}
