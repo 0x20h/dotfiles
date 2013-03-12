@@ -151,7 +151,7 @@ if (executable('./install'))
 	autocmd BufWritePost * :call system('./install')
 endif
 
-autocmd Filetype javascript set foldmethod=indent foldlevel=0
+autocmd Filetype javascript set foldmethod=indent foldlevel=0 foldnestmax=1
 
 " autoload syntax highlighting for typos
 autocmd BufRead * :source $HOME/.vim/bundle/syntax/typos.vim
