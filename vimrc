@@ -56,7 +56,7 @@ hi SpellBad ctermbg=88 cterm=none
 hi DiffAdd term=bold ctermbg=22 ctermfg=255
 hi DiffChange term=bold ctermfg=16 ctermbg=220
 hi DiffDelete term=bold ctermfg=247 ctermbg=196
-hi DiffText term=reverse cterm=bold
+hi DiffText term=reverse cterm=bold ctermfg=white
 set cursorline
 
 
