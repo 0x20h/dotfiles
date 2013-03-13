@@ -1,0 +1,2 @@
+#!/bin/sh
+git diff $(git log -n1 --pretty=format:%p $1) $@
