@@ -1,6 +1,9 @@
-servers = (
-  { address = "irc.freenode.org"; chatnet = "freenode"; port = "6667"; }
-);
+servers = ({ 
+	address = "irc.freenode.org"; 
+	chatnet = "freenode"; 
+	port = "6667"; 
+	autoconnect="yes";
+});
 
 chatnets = {
   freenode = {
@@ -13,18 +16,11 @@ chatnets = {
 };
 
 channels = (
-  { name = "#cakephp"; chatnet = "freenode"; autojoin = "No"; },
-  { name = "#phpdocumentor"; chatnet = "freenode"; autojoin = "No"; }
 );
 
 aliases = {
-  J = "join";
-  WJOIN = "join -window";
-  WQUERY = "query -window";
-  LEAVE = "part";
+  AUTH="/msg NickServ identify $0"
   BYE = "quit";
-  EXIT = "quit";
-  SIGNOFF = "quit";
   DESCRIBE = "action";
   DATE = "time";
   HOST = "userhost";
@@ -36,13 +32,7 @@ aliases = {
   W = "who";
   N = "names";
   M = "msg";
-  T = "topic";
-  C = "clear";
   CL = "clear";
-  K = "kick";
-  KB = "kickban";
-  KN = "knockout";
-  BANS = "ban";
   B = "ban";
   MUB = "unban *";
   UB = "unban";
@@ -52,17 +42,13 @@ aliases = {
   UMODE = "mode $N";
   WC = "window close";
   WN = "window new hide";
-  SV = "say Irssi $J ($V) - http://irssi.org/";
   GOTO = "sb goto";
   CHAT = "dcc chat";
   RUN = "SCRIPT LOAD";
-  CALC = "exec - if command -v bc >/dev/null 2>&1\\; then printf '%s=' '$*'\\; echo '$*' | bc -l\\; else echo bc was not found\\; fi";
   SBAR = "STATUSBAR";
   INVITELIST = "mode $C +I";
   Q = "QUERY";
   "MANUAL-WINDOWS" = "set use_status_window off;set autocreate_windows off;set autocreate_query_level none;set autoclose_windows off;set reuse_unused_windows on;save";
-  EXEMPTLIST = "mode $C +e";
-  ATAG = "WINDOW SERVER";
   UNSET = "set -clear";
   RESET = "set -default";
 };
