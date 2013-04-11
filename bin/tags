@@ -1,2 +1,2 @@
 #!/bin/sh
-ctags-exuberant -R --sort=yes  *
+ctags-exuberant -R --sort=yes $@
