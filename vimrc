@@ -73,6 +73,8 @@ nmap <leader>t :FufTag<CR>
 nmap <leader>k :FufFile<CR>
 nmap <leader>j :FufBuffer<CR>
 nmap <leader>l :FufBufferTag<CR>
+nmap <leader>s :call SyncWithRemote()<CR>
+
 " CTRL-Shift-R for file search (like eclipse)
 nmap <C-a> :FufCoverageFile<CR>
 " CTRL-s doubled for reloading the config
@@ -119,11 +121,14 @@ inoremap <Down>  <NOP>
 autocmd BufRead *.php set binary noendofline
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
-" Make vim run execute_on_save.sh on save if an execute_on_save.sh 
+" Make vim run execute_on_save.sh if an execute_on_save.sh 
 " exeutable exists in current pwd ...
-if executable('./execute_on_save.sh')
-	autocmd BufWritePost * :call system('./execute_on_save.sh')
-endif
+function SyncWithRemote()
+	if executable('./execute_on_save.sh')
+		:call system('./execute_on_save.sh')
+		echo "Synced!"
+	endif
+endfunction
 
 " Syntastic settings
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': ['sh', 'rst', 'md'] }
@@ -142,6 +147,7 @@ set foldlevel=1
 au! BufRead *.rst set textwidth=80 colorcolumn=80 expandtab tabstop=4 spell
 au! BufWritePost *.rst :call system('make')
 au! BufRead *.md set textwidth=80 colorcolumn=80 expandtab tabstop=4 spell
+au! BufRead *.jade set expandtab tabstop=2 list nospell
 au! FileType xslt,xml set textwidth=80 colorcolumn=80 expandtab tabstop=4 spell
 
 " ####################
