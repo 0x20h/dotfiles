@@ -1,2 +1,2 @@
 #!/bin/sh
-git log --pretty=format:"%Cgreen%h%Creset|%Cred%cn%Creset|%Cblue%cr%Creset|%s" $@ | awk -F '|' '{printf "%s %-16s %-21s %s...\n", $1, $2, $3, substr($4, 1, 100)}' | less -r
+git log --pretty=format:"%Cgreen%h%Creset|%Cred%cn%Creset|%Cblue%cr%Creset|%s" -10 $@ | awk -F '|' '{printf "%s %-16s %-21s %s...\n", $1, $2, $3, substr($4, 1, 100)}'
