@@ -14,8 +14,11 @@ fi
 rm -rf ~/.vim/*
 cp -r vim/* ~/.vim
 
-# tmux
-cp tmux.conf ~/.tmux.conf
+# dotfiles
+for i in $(ls dotfiles); do
+	rm -rf ~/.$i
+	cp -r dotfiles/$i ~/.$i
+done
 
 # copy diff scripts
 if [ ! -d ~/bin ]; then
