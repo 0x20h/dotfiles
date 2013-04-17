@@ -144,11 +144,11 @@ set foldlevel=1
 " textfiles
 " ####################
 
-au! BufRead *.rst set textwidth=80 colorcolumn=80 expandtab tabstop=4 spell
+au! BufRead *.rst set textwidth=80 colorcolumn=80 expandtab tabstop=4
 au! BufWritePost *.rst :call system('make')
-au! BufRead *.md set textwidth=80 colorcolumn=80 expandtab tabstop=4 spell
-au! BufRead *.jade set expandtab tabstop=2 list nospell
-au! FileType xslt,xml set textwidth=80 colorcolumn=80 expandtab tabstop=4 spell
+au! BufRead *.md set textwidth=80 colorcolumn=80 expandtab tabstop=4 
+au! BufRead *.jade set expandtab tabstop=2 list
+au! FileType xslt,xml set textwidth=80 colorcolumn=80 expandtab tabstop=4
 
 " ####################
 " dotfiles
