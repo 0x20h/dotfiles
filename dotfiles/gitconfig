@@ -4,6 +4,7 @@
 [pager]
     diff =
 [alias]
+	st = "status"
 	ls = "log --pretty=format:'%Cgreen%h%Creset %Cblue%ad%Creset %s %Cred[%cn]%Creset' --decorate --date=short"
 	ll = "log --pretty=format:'%Cgreen%h%Creset %Cblue%cr%Creset %s %Cred[%cn]%Creset %Cblue%cr%Creset' --decorate --numstat"
 	df = "difftool -t vimdiff"
