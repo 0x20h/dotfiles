@@ -36,11 +36,3 @@ if [ $? -ne 0 ]; then
 	echo "adding bash_custom entry to your .bashrc"
 	echo "if [ -f ~/.bash_custom ]; then . ~/.bash_custom; fi" >> ~/.bashrc
 fi
-
-echo "Add to your .gitconfig for vimdiff"
-echo "
-[diff]
-   external = git_diff_wrapper
-[pager]
-    diff =
-"
