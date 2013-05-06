@@ -117,9 +117,18 @@ inoremap <Down>  <NOP>
 " PHP
 " ####################
 
-" no auto newline for php files at the end of file
-autocmd BufRead *.php set binary noendofline
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+augroup phpgroup
+	autocmd!
+	" no auto newline for php files at the end of file
+	autocmd Filetype php set binary noendofline expandtab ts=4 omnifunc=phpcomplete#CompletePHP
+	let g:syntastic_phpcs_conf = '--standard=PSR2'
+	" php folding
+	let php_folding=1
+	let php_htmlInStrings=1
+	let php_sql_query=1
+	let php_noShortTags=1
+	set foldlevel=1
+augroup END
 
 " Make vim run execute_on_save.sh if an execute_on_save.sh 
 " exeutable exists in current pwd ...
@@ -130,15 +139,7 @@ function SyncWithRemote()
 	endif
 endfunction
 
-" Syntastic settings
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': ['sh', 'rst', 'md'] }
-
-" php folding
-let php_folding=1
-let php_htmlInStrings=1
-let php_sql_query=1
-let php_noShortTags=1
-set foldlevel=1
 
 " ####################
 " textfiles
