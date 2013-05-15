@@ -4,7 +4,6 @@ set nocompatible
 " plugins under the ~/.vim/bundle directory
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
-
 filetype plugin on
 "filetype off
 
@@ -119,8 +118,7 @@ inoremap <Down>  <NOP>
 
 augroup phpgroup
 	autocmd!
-	" no auto newline for php files at the end of file
-	autocmd Filetype php set binary noendofline expandtab ts=4 omnifunc=phpcomplete#CompletePHP
+	autocmd Filetype php set expandtab ts=4 omnifunc=phpcomplete#CompletePHP
 	let g:syntastic_phpcs_conf = '--standard=PSR2'
 	" php folding
 	let php_folding=1
@@ -158,7 +156,7 @@ if (executable('./install'))
 	autocmd BufWritePost * :call system('./install')
 endif
 
-autocmd Filetype javascript set foldmethod=indent foldlevel=0 foldnestmax=1
+autocmd Filetype javascript set noexpandtab ts=2
 
 " autoload syntax highlighting for typos
 autocmd BufRead * :source $HOME/.vim/bundle/syntax/typos.vim
