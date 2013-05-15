@@ -1,9 +1,19 @@
 [user]
         email = kohj@informatik.uni-marburg.de
         name = 0x20h
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	ui = true
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
 [pager]
     diff =
 [alias]
+	s = "status -sb"
 	st = "status"
 	ls = "log --pretty=format:'%Cgreen%h%Creset %Cblue%ad%Creset %s %Cred[%cn]%Creset' --decorate --date=short -10"
 	ll = "log --pretty=format:'%Cgreen%h%Creset %Cblue%cr%Creset %s %Cred[%cn]%Creset %Cblue%cr%Creset' --decorate --numstat -5"
