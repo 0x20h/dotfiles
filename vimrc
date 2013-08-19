@@ -1,3 +1,5 @@
+
+
 set nocompatible
 
 " Use pathogen to easily modify the runtime path to include all
@@ -111,6 +113,13 @@ inoremap <Down>  <NOP>
 " #############################################################################
 " LANGUAGE SPECIFIC SETTINGS
 " #############################################################################
+if !exists("*LoadProjectSettings")
+	function LoadProjectSettings()
+		if (filereadable('./vimrc'))
+			:source ./vimrc
+		endif
+	endfunction
+endif
 
 " ####################
 " PHP
@@ -130,7 +139,7 @@ augroup END
 
 " Make vim run execute_on_save.sh if an execute_on_save.sh 
 " exeutable exists in current pwd ...
-function SyncWithRemote()
+function! SyncWithRemote()
 	if executable('./execute_on_save.sh')
 		:call system('./execute_on_save.sh')
 		echo "Synced!"
@@ -160,3 +169,4 @@ autocmd Filetype javascript set noexpandtab ts=2
 
 " autoload syntax highlighting for typos
 autocmd BufRead * :source $HOME/.vim/bundle/syntax/typos.vim
+autocmd BufRead * :call LoadProjectSettings()
