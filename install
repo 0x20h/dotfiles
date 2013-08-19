@@ -3,32 +3,22 @@
 cd $(dirname $0)
 
 
-# vim stuff
-cp vimrc ~/.vimrc
-
-if [ -f private-vimrc ]; then
-	# append private settings, place a private-vimrc in this directory
-	cat private-vimrc >> ~/.vimrc
-fi
-
-rm -rf ~/.vim/*
-cp -r vim/* ~/.vim
-
 # dotfiles
 for i in $(ls dotfiles); do
 	rm -rf ~/.$i
 	cp -r dotfiles/$i ~/.$i
 done
 
-# copy diff scripts
+if [ -f private-vimrc ]; then
+	# append private settings, place a private-vimrc in this directory
+	cat private-vimrc >> ~/.vimrc
+fi
+
 if [ ! -d ~/bin ]; then
 	mkdir ~/bin
 fi
 
 cp bin/* ~/bin
-
-# copy custom bash
-cp bash_custom ~/.bash_custom
 
 grep -q ".bash_custom" ~/.bashrc
 
