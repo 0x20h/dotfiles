@@ -159,7 +159,7 @@ if (executable('./install'))
 	autocmd BufWritePost * :call system('./install')
 endif
 
-autocmd Filetype javascript set noexpandtab ts=2
+autocmd Filetype javascript set noexpandtab ts=2 shiftwidth=2
 
 " autoload syntax highlighting for typos
 autocmd BufRead * :source $HOME/.vim/bundle/syntax/typos.vim
