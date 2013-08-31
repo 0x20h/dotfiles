@@ -16,4 +16,4 @@
 	ll = "log --pretty=format:'%Cgreen%h%Creset %Cblue%cr%Creset %s %Cred[%cn]%Creset %Cblue%cr%Creset' --decorate --numstat -5"
 	df = "difftool -t vimdiff"
 	cat = "cat-file"
-	branch = "branch -va"
+	br = "branch -va"

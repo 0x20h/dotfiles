@@ -4,6 +4,7 @@ export JAVA_HOME=/usr/lib/jvm/java-7-oracle
 alias crap="grep -Rn --color=auto --exclude-dir=.svn"
 alias go='gnome-open'
 alias j="jump"
+alias php="php -c ~/php.ini"
 
 # set vim as default editor
 export EDITOR=/usr/bin/vim
