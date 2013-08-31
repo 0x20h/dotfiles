@@ -29,7 +29,7 @@ function unmark {
 }
 
 function marks {
-	ls -l "$MARKPATH" | awk '/^l/ {print $8 " -> " $10}' | column -t
+	ls -l "$MARKPATH" | awk '/^l/ {print $9 " -> " $11}' | column -t
 }
 
 _completemarks() {
