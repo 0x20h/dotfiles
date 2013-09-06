@@ -19,7 +19,7 @@ channels = (
 );
 
 aliases = {
-  AUTH="/msg NickServ identify $0"
+  AUTH="/msg NickServ identify $0";
   BYE = "quit";
   DESCRIBE = "action";
   DATE = "time";
