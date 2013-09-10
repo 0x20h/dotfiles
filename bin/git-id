@@ -17,6 +17,8 @@ LINE=$(grep -i "$1" ~/.git-identities)
 NAME=$(echo $LINE | cut -d'|' -f2)
 EMAIL=$(echo $LINE | cut -d'|' -f3)
 
-echo "Setting $NAME $EMAIL"
-git config user.name $NAME
-git config user.email $EMAIL
+git config --unset-all user.name
+git config user.name "$NAME"
+git config --unset-all user.email
+git config user.email "$EMAIL"
+git config -l | grep user
