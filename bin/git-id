@@ -1,0 +1,22 @@
+#!/bin/sh
+IDENTITY_FILE="$HOME/.git-identities"
+
+if [ ! -f "$IDENTITY_FILE" ]; then
+	echo "Identity file missing: $IDENTITY_FILE"
+	echo "Format: Identifier|Name|Email"
+	exit 1
+fi
+
+# without args, just print ids
+if [ $# -eq 0 ]; then
+	awk -F '|' '{printf "%10s: %s <%s>\n", $1, $2, $3}' $IDENTITY_FILE
+	exit 0;
+fi
+
+LINE=$(grep -i "$1" ~/.git-identities)
+NAME=$(echo $LINE | cut -d'|' -f2)
+EMAIL=$(echo $LINE | cut -d'|' -f3)
+
+echo "Setting $NAME $EMAIL"
+git config user.name $NAME
+git config user.email $EMAIL
