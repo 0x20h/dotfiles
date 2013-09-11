@@ -2,6 +2,8 @@
 
 cd $(dirname $0)
 
+echo -n "updating composer: "
+bin/composer self
 
 # dotfiles
 for i in $(ls dotfiles); do
