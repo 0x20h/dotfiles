@@ -43,7 +43,7 @@ hi CursorLine cterm=bold ctermbg=black " Overwrite cursor line style
 hi Folded cterm=none ctermfg=white ctermbg=black
 hi Comment ctermfg=DarkGreen ctermbg=None
 hi PMenu cterm=none ctermbg=black ctermfg=lightgrey
-hi PMenuSel cterm=bold ctermbg=darkgrey ctermfg=white
+hi PMenuSel cterm=bold ctermbg=black ctermfg=white
 hi StatusLine cterm=bold ctermbg=darkgreen ctermfg=white
 hi StatusLineNC cterm=none ctermbg=darkred ctermfg=white
 hi MatchParen ctermbg=21 cterm=bold ctermfg=white
