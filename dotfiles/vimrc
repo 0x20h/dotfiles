@@ -131,6 +131,11 @@ augroup phpgroup
 	set foldlevel=1
 augroup END
 
+augroup c
+	autocmd!
+	autocmd FileType c set noexpandtab ts=2 foldenable foldlevel=0 foldmethod=indent foldnestmax=1
+augroup end
+
 " Make vim run execute_on_save.sh if an execute_on_save.sh 
 " exeutable exists in current pwd ...
 function! SyncWithRemote()

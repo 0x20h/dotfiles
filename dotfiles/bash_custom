@@ -1,5 +1,4 @@
 export PATH=~/bin:~/.local/bin:$PATH
-export JAVA_HOME=/usr/lib/jvm/java-7-oracle
 
 alias crap="grep -Rn --color=auto --exclude-dir=.svn"
 alias go='gnome-open'
