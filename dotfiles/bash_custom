@@ -1,6 +1,6 @@
 export PATH=~/bin:~/.local/bin:$PATH
 
-alias crap="grep -Rn --color=auto --exclude-dir=.svn"
+alias crap="echo 'use ack to search for'"
 alias go='gnome-open'
 alias j="jump"
 alias php="php -c ~/php.ini"
