@@ -2,8 +2,9 @@
 
 cd $(dirname $0)
 
-echo -n "updating composer: "
-bin/composer self
+for s in install.d/*; do
+	. $s;
+done;
 
 # dotfiles
 for i in $(ls dotfiles); do
@@ -29,5 +30,3 @@ if [ $? -ne 0 ]; then
 	echo "if [ -f ~/.bash_custom ]; then . ~/.bash_custom; fi" >> ~/.bashrc
 fi
 
-# powerline config needs to be in ~/.config/powerline
-ln -s ~/.powerline ~/.config/powerline 
