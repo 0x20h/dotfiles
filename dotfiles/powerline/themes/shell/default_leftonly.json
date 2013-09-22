@@ -1,8 +1,13 @@
 {
 	"default_module": "powerline.segments.common",
 	"segment_data": {
+		"user": {
+			"before": "",
+			"after":"@"
+		},
 		"hostname": {
-			"before": " ",
+			"before": "",
+			"after": "",
 			"args": {
 				"only_if_ssh": false
 			}
@@ -12,15 +17,20 @@
 		},
 		"branch": {
 			"before": " "
+		},
+		"cwd": {
+			"after": " $"
 		}
 	},
 	"segments": {
 		"left": [
 			{
-				"name": "user"
+				"name": "user",
+				"draw_soft_divider": false
 			},
 			{
-				"name": "hostname"
+				"name": "hostname",
+				"align": "l"
 			},
 			{
 				"name": "virtualenv"
