@@ -1,0 +1,3 @@
+#!/bin/sh
+$HOME/apps/powerline/scripts/powerline -p ~/.powerline $@
+
