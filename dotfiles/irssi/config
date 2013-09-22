@@ -1,12 +1,27 @@
-servers = ({ 
-	address = "irc.freenode.org"; 
-	chatnet = "freenode"; 
-	port = "6667"; 
-	autoconnect="yes";
-});
+servers = (
+	{ 
+		address = "irc.freenode.org"; 
+		chatnet = "freenode"; 
+		port = "6667"; 
+		autoconnect="yes";
+	},
+	{ 
+		address = "irc.gnome.org"; 
+		chatnet = "gnome"; 
+		port = "6667"; 
+		autoconnect="yes";
+	},
+);
 
 chatnets = {
   freenode = {
+    type = "IRC";
+    max_kicks = "4";
+    max_msgs = "5";
+    max_whois = "4";
+    max_query_chans = "5";
+  },
+  gnome = {
     type = "IRC";
     max_kicks = "4";
     max_msgs = "5";
