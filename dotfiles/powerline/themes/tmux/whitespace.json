@@ -8,6 +8,9 @@
 	"segments": {
 		"right": [
 			{
+				"name": "battery"
+			},
+			{
 				"name": "date",
 				"args": {
 					"format": "%a, %d.%m %H:%M",
