@@ -5,8 +5,8 @@ set nocompatible
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 filetype plugin on
-"filetype off
 
+" set a decent title on exit
 set t_Co=256 " set the terminal to 256 color mode
 set modelines=0
 set guicursor=a:blinkon0 
@@ -26,7 +26,6 @@ set ruler
 set showcmd
 set smartindent
 set hidden
-set title
 set nobackup
 set noswapfile
 
@@ -39,7 +38,7 @@ set listchars=tab:▸\ ,eol:¬
 
 " COLORS
 colorscheme pablo
-hi CursorLine cterm=bold ctermbg=black " Overwrite cursor line style
+hi CursorLine cterm=bold ctermbg=235 " Overwrite cursor line style
 hi Folded cterm=none ctermfg=white ctermbg=black
 hi Comment ctermfg=DarkGreen ctermbg=None
 hi PMenu cterm=none ctermbg=black ctermfg=lightgrey
