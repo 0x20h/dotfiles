@@ -1,7 +1,32 @@
 #!/bin/sh
-# from https://powerline.readthedocs.org/en/latest/installation/linux.html#installation-linux
+# based on https://powerline.readthedocs.org/en/latest/installation/linux.html#installation-linux
+
+# compile libgit2 into relative dist path
+# needs cmake
+if [ ! -d $BASE/git/libgit2 ]; then
+	git clone https://github.com/libgit2/libgit2.git $BASE/git/libgit2 -b master
+	# asssuming that cmake is installed
+	cd $BASE/git/libgit2 &&	cmake -DCMAKE_INSTALL_PREFIX:PATH=$BASE/git/libgit2/dist . && make && make install	
+fi
+
+# bind pygit2 to the local libgit2 installation
+# needs python-dev
+if [ ! -d $BASE/git/pygit2 ]; then
+	git clone git://github.com/libgit2/pygit2.git $BASE/git/pygit2
+	cd $BASE/git/pygit2
+	export LIBGIT2=$BASE/git/libgit2/dist 
+	export LDFLAGS="-Wl,-rpath=$LIBGIT2/lib,--enable-new-dtags $LDFLAGS"
+	python setup.py build
+	python setup.py install --user
+fi
+
+
+if [ ! -d $BASE/git/powerline ]; then
+	git clone https://github.com/Lokaltog/powerline.git $BASE/git/powerline
+fi
 
 [ ! -d ~/.fonts ] && mkdir ~/.fonts
+
 if [ ! -f ~/.fonts/PowerlineSymbols.otf ]; then
 	echo "installing powerline fonts..."
 

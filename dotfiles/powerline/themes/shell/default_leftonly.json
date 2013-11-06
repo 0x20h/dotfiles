@@ -3,7 +3,7 @@
 	"segment_data": {
 		"user": {
 			"before": "",
-			"after":"@"
+			"after": "@"
 		},
 		"hostname": {
 			"before": "",
@@ -16,7 +16,8 @@
 			"before": "ⓔ  "
 		},
 		"branch": {
-			"before": " "
+			"before": "[",
+			"after": "]"
 		},
 		"cwd": {
 			"after": " $"
@@ -25,18 +26,10 @@
 	"segments": {
 		"left": [
 			{
-				"name": "user",
-				"draw_soft_divider": false
-			},
-			{
-				"name": "hostname",
-				"align": "l"
-			},
-			{
-				"name": "virtualenv"
-			},
-			{
-				"name": "branch"
+				"name": "branch",
+				"args": {
+					"status_colors": false
+				}
 			},
 			{
 				"name": "cwd",
