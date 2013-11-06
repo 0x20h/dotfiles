@@ -1,7 +1,10 @@
 #!/bin/sh
 # from https://powerline.readthedocs.org/en/latest/installation/linux.html#installation-linux
+
 [ ! -d ~/.fonts ] && mkdir ~/.fonts
 if [ ! -f ~/.fonts/PowerlineSymbols.otf ]; then
+	echo "installing powerline fonts..."
+
 	wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf \
 		-O ~/.fonts/PowerlineSymbols.otf
 
