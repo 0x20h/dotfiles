@@ -1,5 +1,5 @@
 export PATH=~/bin:~/.local/bin:$PATH
-
+export GEM_HOME=~/.gem
 alias crap="echo 'use ack to search for'"
 alias go='gnome-open'
 alias j="jump"
