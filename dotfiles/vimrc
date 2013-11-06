@@ -156,13 +156,6 @@ au! BufRead *.md set textwidth=80 colorcolumn=80 expandtab tabstop=4
 au! BufRead *.jade set expandtab tabstop=2 list
 au! FileType xslt,xml set textwidth=80 colorcolumn=80 expandtab tabstop=4
 
-" ####################
-" dotfiles
-" ####################
-if (executable('./install')) 
-	autocmd BufWritePost * :call system('./install')
-endif
-
 autocmd Filetype javascript set noexpandtab ts=2 shiftwidth=2
 
 " autoload syntax highlighting for typos
