@@ -1,4 +1,5 @@
 #!/bin/sh
 
-echo -n "updating composer: "
-bin/composer self
+echo -n "installing composer: "
+curl -sS https://getcomposer.org/installer | php -- --install-dir=$HOME/bin
+mv $HOME/bin/composer.phar $HOME/bin/composer
