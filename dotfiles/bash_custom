@@ -1,3 +1,4 @@
+export GOPATH=~/go
 export PATH=~/bin:~/.local/bin:$PATH
 export GEM_HOME=~/.gem
 alias j="jump"
