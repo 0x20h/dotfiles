@@ -1,14 +1,15 @@
 set nocompatible
-
+set backupdir=~/.vim/backup,/tmp,.
+set directory=~/.vim/backup,/tmp,.
 " Use pathogen to easily modify the runtime path to include all
 " plugins under the ~/.vim/bundle directory
 call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
-filetype plugin on
+call pathogen#infect() "runtime_append_all_bundles()
+filetype plugin indent on
 
 " set a decent title on exit
-set t_Co=256 " set the terminal to 256 color mode
-set modelines=0
+" set t_Co=256 " set the terminal to 256 color mode
+" set modelines=0
 set guicursor=a:blinkon0 
 set wildmenu
 set showmode
@@ -26,8 +27,6 @@ set ruler
 set showcmd
 set smartindent
 set hidden
-set nobackup
-set noswapfile
 
 syntax on
 
@@ -135,6 +134,9 @@ augroup c
 	autocmd FileType c set noexpandtab ts=4 foldenable foldlevel=0 foldmethod=indent foldnestmax=1
 augroup end
 
+autocmd FileType go map <F1> :Godoc<cr> 
+autocmd FileType go set list
+autocmd FileType go inoremap <Nul> <C-x><C-o>
 " Make vim run execute_on_save.sh if an execute_on_save.sh 
 " exeutable exists in current pwd ...
 function! SyncWithRemote()

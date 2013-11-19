@@ -1,2 +1,4 @@
-private-vimrc
-git/*
+/private-vimrc
+/git/*
+/dotfiles/vim/bundle/gocode/
+/dotfiles/vim/bundle/vim-golang

@@ -3,6 +3,7 @@
 
 # compile libgit2 into relative dist path
 # needs cmake
+[ ! -x /usr/bin/cmake ] && sudo apt-get install cmake
 if [ ! -d $BASE/git/libgit2 ]; then
 	git clone https://github.com/libgit2/libgit2.git $BASE/git/libgit2 -b master
 	# asssuming that cmake is installed
@@ -12,6 +13,7 @@ fi
 # bind pygit2 to the local libgit2 installation
 # needs python-dev
 if [ ! -d $BASE/git/pygit2 ]; then
+	sudo apt-get install python-dev
 	git clone git://github.com/libgit2/pygit2.git $BASE/git/pygit2
 	cd $BASE/git/pygit2
 	export LIBGIT2=$BASE/git/libgit2/dist 

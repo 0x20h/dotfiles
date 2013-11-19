@@ -1,5 +1,5 @@
 export GOPATH=~/go
-export PATH=~/bin:~/.local/bin:$PATH
+export PATH=~/bin:~/go/bin:~/.local/bin:$PATH
 export GEM_HOME=~/.gem
 alias j="jump"
 alias php="php -c ~/php.ini"
