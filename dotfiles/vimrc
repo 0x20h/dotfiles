@@ -30,6 +30,11 @@ set hidden
 
 syntax on
 
+" POWERLINE setup
+set rtp+=$HOME/dotfiles/git/powerline/powerline/bindings/vim/
+set laststatus=2
+set t_Co=256
+
 " use :set list and :set nolist
 set listchars=tab:▸\ ,eol:¬
 " Visible whitespace
