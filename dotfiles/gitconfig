@@ -17,3 +17,4 @@
 	df = "difftool -t vimdiff"
 	cat = "cat-file"
 	br = "branch -va"
+	ci = "commit"
