@@ -10,7 +10,7 @@ filetype plugin indent on
 " set a decent title on exit
 " set t_Co=256 " set the terminal to 256 color mode
 " set modelines=0
-set guicursor=a:blinkon0 
+set guicursor=a:blinkon0
 set wildmenu
 set showmode
 set hlsearch
@@ -27,7 +27,8 @@ set ruler
 set showcmd
 set smartindent
 set hidden
-
+set textwidth=80
+set colorcolumn=80
 syntax on
 
 " POWERLINE setup
@@ -52,7 +53,8 @@ hi StatusLineNC cterm=none ctermbg=darkred ctermfg=white
 hi MatchParen ctermbg=21 cterm=bold ctermfg=white
 hi SyntasticWarning ctermbg=yellow cterm=bold ctermfg=red
 hi WordError ctermfg=88 cterm=none ctermbg=none
-hi SpellBad ctermbg=88 cterm=none 
+hi SpellBad ctermbg=88 cterm=none
+hi ColorColumn ctermbg=202 cterm=none
 
 " DIFF VIEW
 hi DiffAdd term=bold ctermbg=22 ctermfg=255
@@ -97,7 +99,7 @@ map <F2> :NERDTreeToggle<cr>
 let Tlist_WinWidth=50
 let Tlist_Use_Right_Window=1
 map <F4> :TlistToggle<cr>
-map <F3> <C-]> 
+map <F3> <C-]>
 
 set completeopt=longest,menuone
 
@@ -139,10 +141,10 @@ augroup c
 	autocmd FileType c set noexpandtab ts=4 foldenable foldlevel=0 foldmethod=indent foldnestmax=1
 augroup end
 
-autocmd FileType go map <F1> :Godoc<cr> 
+autocmd FileType go map <F1> :Godoc<cr>
 autocmd FileType go set list
 autocmd FileType go inoremap <Nul> <C-x><C-o>
-" Make vim run execute_on_save.sh if an execute_on_save.sh 
+" Make vim run execute_on_save.sh if an execute_on_save.sh
 " exeutable exists in current pwd ...
 function! SyncWithRemote()
 	if executable('./execute_on_save.sh')
@@ -156,10 +158,9 @@ let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'pas
 " ####################
 " textfiles
 " ####################
-
-au! BufRead *.rst set textwidth=80 colorcolumn=80 expandtab tabstop=4
+au! BufRead *.rst expandtab tabstop=4
 au! BufWritePost *.rst :call system('make')
-au! BufRead *.md set textwidth=80 colorcolumn=80 expandtab tabstop=4 
+au! BufRead *.md set textwidth=80 colorcolumn=80 expandtab tabstop=4
 au! BufRead *.jade set expandtab tabstop=2 list
 au! FileType xslt,xml set textwidth=80 colorcolumn=80 expandtab tabstop=4
 
