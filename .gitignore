@@ -2,3 +2,4 @@
 /git/*
 /dotfiles/vim/bundle/gocode/
 /dotfiles/vim/bundle/vim-golang
+/dotfiles/vim/compiler
