@@ -6,8 +6,8 @@
 			"after": "@"
 		},
 		"hostname": {
-			"before": "",
-			"after": "",
+			"before": "(",
+			"after": ")",
 			"args": {
 				"only_if_ssh": false
 			}
@@ -25,6 +25,9 @@
 	},
 	"segments": {
 		"left": [
+			{
+				"name": "hostname"
+			},
 			{
 				"name": "branch",
 				"args": {
