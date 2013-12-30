@@ -21,6 +21,10 @@
 		"shell": {
 			"colorscheme": "default",
 			"theme": "default_leftonly"
+		},
+		"vim": {
+			"colorscheme": "default",
+			"theme": "default"
 		}
 	}
 }
