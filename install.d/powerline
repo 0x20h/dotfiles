@@ -22,10 +22,7 @@ if [ ! -d $BASE/git/pygit2 ]; then
 	python setup.py install --user
 fi
 
-
-if [ ! -d $BASE/git/powerline ]; then
-	git clone https://github.com/Lokaltog/powerline.git $BASE/git/powerline
-fi
+pip install --user git+git://github.com/Lokaltog/powerline
 
 [ ! -d ~/.fonts ] && mkdir ~/.fonts
 

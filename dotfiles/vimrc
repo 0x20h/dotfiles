@@ -32,7 +32,7 @@ set colorcolumn=80
 syntax on
 
 " POWERLINE setup
-set rtp+=$HOME/dotfiles/git/powerline/powerline/bindings/vim/
+set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 set laststatus=2
 set t_Co=256
 
