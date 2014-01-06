@@ -3,12 +3,13 @@ import json, sys
 
 if len(sys.argv) < 2:
 	print "Usage: jsonv FILE"
+	print "       jsonv - (read from stdin)"
 	exit(1)
 
 f = sys.argv[1]
 
 try:
-	json.load(open(f, 'r'))
+	json.load(sys.stdin if f == '-' else open(f, 'r'))
 	print "OK"
 except (IOError, ValueError) as e:
 	print "FAIL: %s" % e
