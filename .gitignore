@@ -1,5 +1,5 @@
 /private-vimrc
 /git/*
-/dotfiles/vim/bundle/gocode/
-/dotfiles/vim/bundle/vim-golang
+/dotfiles/vim/bundle/
+/dotfiles/vim/bundle/*
 /dotfiles/vim/compiler

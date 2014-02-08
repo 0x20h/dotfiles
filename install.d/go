@@ -1,4 +1,5 @@
 #!/bin/sh
+info "go env..."
 
 [ ! -x /usr/bin/go ] && sudo apt-get install golang-go
 
@@ -9,10 +10,13 @@ if [ ! -d $BASE/git/vim-golang ]; then
 fi
 
 cd $BASE/git/vim-golang && git fetch && git reset --hard origin/master
-[ ! -L $BASE/dotfiles/vim/bundle/vim-golang ] && \
-	ln -s $BASE/git/vim-golang $BASE/dotfiles/vim/bundle/vim-golang
 
-ln -s $BASE/git/vim-golang/misc/vim/compiler/go.vim $BASE/dotfiles/vim/compiler/go.vim
+[ ! -L $BASE/dotfiles/vim/bundle/vim-golang ] && \
+	ln -sf $BASE/git/vim-golang $BASE/dotfiles/vim/bundle/vim-golang
+
+ln -sf $BASE/git/vim-golang/misc/vim/compiler/go.vim \
+	$BASE/dotfiles/vim/compiler/go.vim
+
 # install gocode
 export GOTPATH=$HOME/go
 go get -u github.com/nsf/gocode

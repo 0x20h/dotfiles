@@ -1,5 +1,10 @@
 #!/bin/sh
+info "composer..."
 
-echo "installing composer..."
-curl -sS https://getcomposer.org/installer | php -- --install-dir=$HOME/bin > /dev/null
-mv $HOME/bin/composer.phar $HOME/bin/composer
+if [ -x ~/bin/composer ]; then
+	composer self-update;
+else 
+	echo "installing composer..."
+	curl -sS https://getcomposer.org/installer | php -- --install-dir=$HOME/bin > /dev/null
+	mv $HOME/bin/composer.phar $HOME/bin/composer
+fi

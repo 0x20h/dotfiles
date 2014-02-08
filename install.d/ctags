@@ -1,4 +1,5 @@
 #!/bin/sh
+info "ctags..."
 
 if [ ! -x /usr/bin/ctags-exuberant ]; then
 	echo "ctags not found, installing:"

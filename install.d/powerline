@@ -1,13 +1,15 @@
 #!/bin/sh
+info "powerline..."
 # based on https://powerline.readthedocs.org/en/latest/installation/linux.html#installation-linux
-
 # compile libgit2 into relative dist path
 # needs cmake
 [ ! -x /usr/bin/cmake ] && sudo apt-get install cmake
 if [ ! -d $BASE/git/libgit2 ]; then
 	git clone https://github.com/libgit2/libgit2.git $BASE/git/libgit2 -b master
 	# asssuming that cmake is installed
-	cd $BASE/git/libgit2 &&	cmake -DCMAKE_INSTALL_PREFIX:PATH=$BASE/git/libgit2/dist . && make && make install	
+	cd $BASE/git/libgit2 &&	\
+		cmake -DCMAKE_INSTALL_PREFIX:PATH=$BASE/git/libgit2/dist . && \
+		make && make install	
 fi
 
 # bind pygit2 to the local libgit2 installation

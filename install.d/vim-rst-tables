@@ -1,0 +1,14 @@
+#!/bin/sh
+info "vim-rst-tables..."
+
+pip install --user --upgrade vim_bridge
+cd $BASE/git
+
+if [ ! -d vim-rst-tables ]; then
+	git clone git://github.com/nvie/vim-rst-tables.git
+	cd $BASE/dotfiles/vim/bundle
+	ln -sf $BASE/git/vim-rst-tables
+else
+	cd vim-rst-tables; 
+	git pull origin master
+fi

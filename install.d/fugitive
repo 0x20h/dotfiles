@@ -1,0 +1,12 @@
+#!/bin/sh
+info "fugitive..."
+cd $BASE/git
+
+if [ ! -d vim-fugitive ]; then
+	git clone https://github.com/tpope/vim-fugitive.git
+	cd $BASE/dotfiles/vim/bundle
+	ln -sf $BASE/git/vim-fugitive fugitive
+else
+	cd vim-fugitive; 
+	git pull origin master
+fi
