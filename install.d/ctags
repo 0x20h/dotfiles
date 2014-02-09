@@ -1,7 +1,7 @@
 #!/bin/sh
 info "ctags..."
 
-if [ ! -x /usr/bin/ctags-exuberant ]; then
-	echo "ctags not found, installing:"
+if [ ! -x /usr/bin/ctags ]; then
+	warn "installing ctags"
 	sudo apt-get install ctags-exuberant
 fi

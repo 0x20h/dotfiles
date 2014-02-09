@@ -1,6 +1,11 @@
 #!/bin/sh
 info "vim-rst-tables..."
 
+if [ ! -x /usr/bin/pip ]; then
+	warn "pip missing, skip installation"
+	return
+fi
+
 pip install --user --upgrade vim_bridge
 cd $BASE/git
 

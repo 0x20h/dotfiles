@@ -1,7 +1,11 @@
 #!/bin/sh
 info "go env..."
 
-[ ! -x /usr/bin/go ] && sudo apt-get install golang-go
+if [ ! -x /usr/bin/go ]; then 
+	warn "need golang-go" 
+	sudo apt-get install golang-go
+	[ $? -ne 0 ] && return;
+fi
 
 [ ! -d ~/go ] && mkdir ~/go
 
