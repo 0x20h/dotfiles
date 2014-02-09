@@ -1,3 +1,4 @@
+#!/bin/sh
 export GOPATH=~/go
 export GEM_HOME=~/.gem
 export PATH=~/bin:~/go/bin:~/.gem/bin:~/.local/bin:$PATH
