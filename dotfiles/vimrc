@@ -39,7 +39,7 @@ set t_Co=256
 " use :set list and :set nolist
 set listchars=tab:▸\ ,eol:¬
 " Visible whitespace
-"set list
+set list
 
 " COLORS
 colorscheme pablo
@@ -144,6 +144,7 @@ augroup end
 autocmd FileType go map <F1> :Godoc<cr>
 autocmd FileType go set list
 autocmd FileType go inoremap <Nul> <C-x><C-o>
+
 " Make vim run execute_on_save.sh if an execute_on_save.sh
 " exeutable exists in current pwd ...
 function! SyncWithRemote()
@@ -153,11 +154,16 @@ function! SyncWithRemote()
 	endif
 endfunction
 
+function! Trim()
+	:%s# *$##g|''
+endfunction
+
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': ['sh', 'rst', 'md'] }
 
 " ####################
 " textfiles
 " ####################
+au! BufWrite * :call Trim()
 au! BufRead *.rst set expandtab ts=4
 au! BufWritePost *.rst :call system('make')
 au! BufRead *.md set textwidth=80 colorcolumn=80 expandtab tabstop=4
