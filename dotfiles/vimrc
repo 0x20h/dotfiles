@@ -170,7 +170,7 @@ au! BufRead *.md set textwidth=80 colorcolumn=80 expandtab tabstop=4
 au! BufRead *.jade set expandtab tabstop=2 list
 au! FileType xslt,xml set textwidth=80 colorcolumn=80 expandtab tabstop=4
 
-autocmd Filetype javascript set noexpandtab ts=2 shiftwidth=2
+autocmd Filetype javascript set expandtab ts=2 shiftwidth=2
 
 " autoload syntax highlighting for typos
 autocmd BufRead * :source $HOME/.vim/bundle/syntax/typos.vim
