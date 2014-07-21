@@ -99,7 +99,7 @@ map <F2> :NERDTreeToggle<cr>
 let Tlist_WinWidth=50
 let Tlist_Use_Right_Window=1
 map <F4> :TlistToggle<cr>
-map <F3> <C-]>
+map <F3> :set paste!<cr>
 
 set completeopt=longest,menuone
 
@@ -127,7 +127,7 @@ endif
 augroup phpgroup
 	autocmd!
 	autocmd Filetype php set expandtab ts=4 omnifunc=phpcomplete#CompletePHP
-	let g:syntastic_phpcs_conf = '--standard=PSR2'
+    " let g:syntastic_phpcs_conf = '--standard=PSR2'
 	" php folding
 	let php_folding=1
 	let php_htmlInStrings=1
@@ -163,7 +163,6 @@ let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'pas
 " ####################
 " textfiles
 " ####################
-au! BufWrite * :call Trim()
 au! BufRead *.rst set expandtab ts=4
 au! BufWritePost *.rst :call system('make')
 au! BufRead *.md set textwidth=80 colorcolumn=80 expandtab tabstop=4

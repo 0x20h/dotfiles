@@ -1,0 +1,12 @@
+#!/bin/sh
+info "spark..."
+
+if [ ! -x ~/bin/spark ]; then
+	cd $BASE/git
+	git clone https://github.com/holman/spark
+else
+	cd $BASE/git/spark
+	git pull
+fi
+
+cp $BASE/git/spark/spark ~/bin	

@@ -1,0 +1,8 @@
+#!/bin/sh
+info "phpcs..."
+
+if [ -x ~/bin/composer ]; then
+	composer global require 'squizlabs/php_codesniffer=*'
+else 
+	echo "composer not installed, skipping..."
+fi
