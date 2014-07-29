@@ -1,5 +1,4 @@
 #!/bin/sh
-info "vim-rst-tables..."
 
 depends() {
 	echo "vim python-pip"

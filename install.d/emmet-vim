@@ -1,5 +1,4 @@
 #!/bin/sh
-info "emmet-vim..."
 
 depends() {
 	echo "git vim"

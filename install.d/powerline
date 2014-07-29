@@ -1,5 +1,4 @@
 #!/bin/sh
-info "powerline..."
 
 depends() {
 	echo "wget python-pip cmake"

@@ -3,6 +3,23 @@ info() { echo "\033[1;32m$1\033[0m"; }
 title() { echo "\033[1;34m$1\033[0m"; }
 warn() { echo "\033[1;31m$1\033[0m"; }
 
+pin() {
+	local pin=""
+	if [ ! -f $BASE/pins ]; then
+		warn "$BASE/pins missing"
+		return 1
+	fi
+
+	p=$(cat $BASE/pins | grep $1 | cut -d ' ' -f 2)
+
+	if [ -z "$p" ]; then
+		return 1
+	fi
+
+	echo $p
+	return 0
+}
+
 BASE=$(readlink -f $(dirname $0))
 cd $BASE
 
@@ -33,6 +50,7 @@ dependencies() {
 dependencies
 
 for s in install.d/*; do
+	title "$s::install()"
 	. $s
 	install
 	cd $BASE

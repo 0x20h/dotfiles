@@ -1,0 +1,22 @@
+#!/bin/sh
+
+depends() {
+	echo "build-essential g++"
+}
+
+install() {
+	cd $BASE/git
+
+	if [ ! -d node ]; then
+		git clone https://github.com/joyent/node.git
+	fi
+
+	cd node
+	[ ! -z "$(pin node)" ] && git checkout $(pin node)
+	git pull
+	./configure
+	make
+
+	ln -s $BASE/git/node/out/Release/node ~/bin/node
+	ln -s $BASE/git/node/deps/npm/cli.js ~/bin/npm
+}

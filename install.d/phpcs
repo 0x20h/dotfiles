@@ -1,5 +1,4 @@
 #!/bin/sh
-info "phpcs..."
 
 depends() {
 	echo "php5-cli"

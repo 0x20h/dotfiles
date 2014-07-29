@@ -1,5 +1,4 @@
 #!/bin/sh
-info "ack..."
 
 depends() {
 	echo "curl"

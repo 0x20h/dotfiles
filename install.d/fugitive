@@ -1,5 +1,4 @@
 #!/bin/sh
-info "fugitive..."
 
 depends() {
 	echo "git vim"

@@ -1,7 +1,5 @@
 #!/bin/sh
 
-info "go env..."
-
 depends() {
 	echo "vim git golang-go"
 }

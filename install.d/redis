@@ -1,0 +1,21 @@
+#!/bin/sh
+
+depends() {
+	echo "build-essential gcc"
+}
+
+install() {
+	cd $BASE/git
+
+	if [ ! -d redis ]; then
+		git clone https://github.com/antirez/redis.git
+	fi
+
+	cd redis
+	[ ! -z $(pin redis) ] && git checkout $(pin redis)
+	git pull
+	make
+
+	ln -s $BASE/git/redis/src/redis-cli ~/bin/redis-cli
+	ln -s $BASE/git/redis/src/redis-server ~/bin/redis-server
+}

@@ -1,5 +1,4 @@
 #!/bin/sh
-info "spark..."
 
 depends() {
 	echo "git"
