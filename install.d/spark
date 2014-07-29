@@ -6,13 +6,12 @@ depends() {
 }
 
 install() {
-	if [ ! -x ~/bin/spark ]; then
+	if [ ! -d $BASE/git/spark ]; then
 		cd $BASE/git
 		git clone https://github.com/holman/spark
-	else
-		cd $BASE/git/spark
-		git pull
 	fi
-
-	cp $BASE/git/spark/spark ~/bin	
+	
+	cd $BASE/git/spark
+	git pull
+	cp $BASE/git/spark/spark ~/bin
 }
