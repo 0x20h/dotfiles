@@ -1,7 +1,10 @@
 #!/bin/sh
 info "ctags..."
 
-if [ ! -x /usr/bin/ctags ]; then
-	warn "installing ctags"
-	sudo apt-get install exuberant-ctags
-fi
+depends() {
+	echo "exuberant-ctags"
+}
+
+install() {
+	echo -n
+}

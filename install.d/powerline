@@ -1,48 +1,49 @@
 #!/bin/sh
 info "powerline..."
-# based on https://powerline.readthedocs.org/en/latest/installation/linux.html#installation-linux
-# compile libgit2 into relative dist path
-# needs cmake
-if [ ! -x /usr/bin/cmake ]; then
-   warn "install cmake" 
-   sudo apt-get install cmake
-   [ $? -ne 0 ] && return
-fi
 
-if [ ! -d $BASE/git/libgit2 ]; then
-	git clone https://github.com/libgit2/libgit2.git $BASE/git/libgit2 -b master
-	# asssuming that cmake is installed
-	cd $BASE/git/libgit2 &&	\
-		cmake -DCMAKE_INSTALL_PREFIX:PATH=$BASE/git/libgit2/dist . && \
-		make && make install	
-fi
+depends() {
+	echo "wget python-pip cmake"
+}
 
-# bind pygit2 to the local libgit2 installation
-# needs python-dev
-if [ ! -d $BASE/git/pygit2 ]; then
-	warn "install python-dev"
-	sudo apt-get install python-dev
-	git clone git://github.com/libgit2/pygit2.git $BASE/git/pygit2
-	cd $BASE/git/pygit2
-	export LIBGIT2=$BASE/git/libgit2/dist 
-	export LDFLAGS="-Wl,-rpath=$LIBGIT2/lib,--enable-new-dtags $LDFLAGS"
-	python setup.py build
-	python setup.py install --user
-fi
+install() {
+	# based on https://powerline.readthedocs.org/en/latest/installation/linux.html#installation-linux
+	# compile libgit2 into relative dist path
 
-pip install --user git+git://github.com/Lokaltog/powerline
+	if [ ! -d $BASE/git/libgit2 ]; then
+		git clone https://github.com/libgit2/libgit2.git $BASE/git/libgit2 -b master
+		# asssuming that cmake is installed
+		cd $BASE/git/libgit2 &&	\
+			cmake -DCMAKE_INSTALL_PREFIX:PATH=$BASE/git/libgit2/dist . && \
+			make && make install	
+	fi
 
-[ ! -d ~/.fonts ] && mkdir ~/.fonts
+	# bind pygit2 to the local libgit2 installation
+	# needs python-dev
+	if [ ! -d $BASE/git/pygit2 ]; then
+		warn "install python-dev"
+		sudo apt-get install python-dev
+		git clone git://github.com/libgit2/pygit2.git $BASE/git/pygit2
+		cd $BASE/git/pygit2
+		export LIBGIT2=$BASE/git/libgit2/dist 
+		export LDFLAGS="-Wl,-rpath=$LIBGIT2/lib,--enable-new-dtags $LDFLAGS"
+		python setup.py build
+		python setup.py install --user
+	fi
 
-if [ ! -f ~/.fonts/PowerlineSymbols.otf ]; then
-	echo "installing powerline fonts..."
+	pip install --user git+git://github.com/Lokaltog/powerline
 
-	wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf \
-		-O ~/.fonts/PowerlineSymbols.otf
+	[ ! -d ~/.fonts ] && mkdir ~/.fonts
 
-	fc-cache -vf ~/.fonts
-	mkdir -p ~/.config/fontconfig/conf.d
+	if [ ! -f ~/.fonts/PowerlineSymbols.otf ]; then
+		echo "installing powerline fonts..."
 
-	wget https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf \
-		-O ~/.config/fontconfig/conf.d/10-powerline-symbols.conf 
-fi
+		wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf \
+			-O ~/.fonts/PowerlineSymbols.otf
+
+		fc-cache -vf ~/.fonts
+		mkdir -p ~/.config/fontconfig/conf.d
+
+		wget https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf \
+			-O ~/.config/fontconfig/conf.d/10-powerline-symbols.conf 
+	fi
+}

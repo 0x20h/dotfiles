@@ -1,7 +1,13 @@
 #!/bin/sh
 info "ack..."
 
-if [ ! -x ~/bin/ack ]; then
-	# see http://beyondgrep.com/install/
-	curl -s http://beyondgrep.com/ack-2.10-single-file > ~/bin/ack && chmod u+x ~/bin/ack
-fi;
+depends() {
+	echo "curl"
+}
+
+install() {
+	if [ ! -x ~/bin/ack ]; then
+		# see http://beyondgrep.com/install/
+		curl -s http://beyondgrep.com/ack-2.10-single-file > ~/bin/ack && chmod u+x ~/bin/ack
+	fi;
+}

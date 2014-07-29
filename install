@@ -1,18 +1,40 @@
 #!/bin/sh
-info() { echo "\033[1;33m$1\033[0m"; }
+info() { echo "\033[1;32m$1\033[0m"; }
+title() { echo "\033[1;33m$1\033[0m"; }
 warn() { echo "\033[1;31m$1\033[0m"; }
 
-info "installing dotfiles"
+if [ ! -d ~/bin ]; then
+	mkdir ~/bin
+fi
 
 BASE=$(readlink -f $(dirname $0))
 cd $BASE
 
+dependencies() {
+	local deps=""
+	title "Fetching dependencies"
+	title "---------------------"
+	for s in install.d/*; do
+		. $s
+		for r in $(depends); do
+			deps="$deps $r"
+		done;
+	done
+
+	deps=$(echo $deps | tr " " "\n" | sort | uniq | xargs)
+	title "Collected: '$deps', installing..."
+	sudo apt-get install $deps
+}
+
+dependencies
+
 for s in install.d/*; do
 	. $s
+	install
 	cd $BASE
 done
 
-# dotfiles
+# copy dotfiles
 for i in $(ls dotfiles); do
 	rm -rf ~/.$i
 	cp -r dotfiles/$i ~/.$i
@@ -21,10 +43,6 @@ done
 if [ -f private-vimrc ]; then
 	# append private settings, place a private-vimrc in this directory
 	cat private-vimrc >> ~/.vimrc
-fi
-
-if [ ! -d ~/bin ]; then
-	mkdir ~/bin
 fi
 
 cp bin/* ~/bin

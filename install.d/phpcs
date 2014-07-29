@@ -1,8 +1,14 @@
 #!/bin/sh
 info "phpcs..."
 
-if [ -x ~/bin/composer ]; then
-	composer global require 'squizlabs/php_codesniffer=*'
-else 
-	echo "composer not installed, skipping..."
-fi
+depends() {
+	echo "php5-cli"
+}
+
+install() {
+	if [ -x ~/bin/composer ]; then
+		composer global require 'squizlabs/php_codesniffer=*'
+	else 
+		info "composer not installed, skipping..."
+	fi
+}

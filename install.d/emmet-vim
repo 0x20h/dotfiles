@@ -1,13 +1,19 @@
 #!/bin/sh
 info "emmet-vim..."
 
-cd $BASE/git
+depends() {
+	echo "git vim"
+}
 
-if [ ! -d emmet-vim ]; then
-	git clone https://github.com/mattn/emmet-vim.git
-	cd $BASE/dotfiles/vim/bundle
-	ln -sf $BASE/git/emmet-vim
-else
-	cd emmet-vim;
-	git pull origin master
-fi
+install() {
+	cd $BASE/git
+
+	if [ ! -d emmet-vim ]; then
+		git clone https://github.com/mattn/emmet-vim.git
+		cd $BASE/dotfiles/vim/bundle
+		ln -sf $BASE/git/emmet-vim
+	else
+		cd emmet-vim;
+		git pull origin master
+	fi
+}

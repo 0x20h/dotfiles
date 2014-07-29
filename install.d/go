@@ -1,31 +1,32 @@
 #!/bin/sh
+
 info "go env..."
 
-if [ ! -x /usr/bin/go ]; then 
-	warn "need golang-go" 
-	sudo apt-get install golang-go
-	[ $? -ne 0 ] && return;
-fi
+depends() {
+	echo "vim git golang-go"
+}
 
-[ ! -d ~/go ] && mkdir ~/go
+install() {
+	[ ! -d ~/go ] && mkdir ~/go
 
-if [ ! -d $BASE/git/vim-golang ]; then
-	git clone https://github.com/jnwhiteh/vim-golang.git $BASE/git/vim-golang
-fi
+	if [ ! -d $BASE/git/vim-golang ]; then
+		git clone https://github.com/jnwhiteh/vim-golang.git $BASE/git/vim-golang
+	fi
 
-cd $BASE/git/vim-golang && git fetch && git reset --hard origin/master
+	cd $BASE/git/vim-golang && git fetch && git reset --hard origin/master
 
-[ ! -L $BASE/dotfiles/vim/bundle/vim-golang ] && \
-	ln -sf $BASE/git/vim-golang $BASE/dotfiles/vim/bundle/vim-golang
+	[ ! -L $BASE/dotfiles/vim/bundle/vim-golang ] && \
+		ln -sf $BASE/git/vim-golang $BASE/dotfiles/vim/bundle/vim-golang
 
-ln -sf $BASE/git/vim-golang/misc/vim/compiler/go.vim \
-	$BASE/dotfiles/vim/compiler/go.vim
+	ln -sf $BASE/git/vim-golang/misc/vim/compiler/go.vim \
+		$BASE/dotfiles/vim/compiler/go.vim
 
-# install gocode
-export GOTPATH=$HOME/go
-go get -u github.com/nsf/gocode
+	# install gocode
+	export GOTPATH=$HOME/go
+	go get -u github.com/nsf/gocode
 
-mkdir -p "$BASE/dotfiles/vim/bundle/gocode/autoload"
-mkdir -p "$BASE/dotfiles/vim/bundle/gocode/ftplugin/go"
-cp "$GOPATH/src/github.com/nsf/gocode/vim/autoload/gocomplete.vim" "$BASE/dotfiles/vim/bundle/gocode/autoload"
-cp "$GOPATH/src/github.com/nsf/gocode/vim/ftplugin/go/gocomplete.vim" "$BASE/dotfiles/vim/bundle/gocode/ftplugin/go"
+	mkdir -p "$BASE/dotfiles/vim/bundle/gocode/autoload"
+	mkdir -p "$BASE/dotfiles/vim/bundle/gocode/ftplugin/go"
+	cp "$GOPATH/src/github.com/nsf/gocode/vim/autoload/gocomplete.vim" "$BASE/dotfiles/vim/bundle/gocode/autoload"
+	cp "$GOPATH/src/github.com/nsf/gocode/vim/ftplugin/go/gocomplete.vim" "$BASE/dotfiles/vim/bundle/gocode/ftplugin/go"
+}
