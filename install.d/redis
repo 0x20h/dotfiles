@@ -16,6 +16,6 @@ install() {
 	git pull
 	make
 
-	ln -s $BASE/git/redis/src/redis-cli ~/bin/redis-cli
-	ln -s $BASE/git/redis/src/redis-server ~/bin/redis-server
+	ln -sf $BASE/git/redis/src/redis-cli ~/bin/redis-cli
+	ln -sf $BASE/git/redis/src/redis-server ~/bin/redis-server
 }

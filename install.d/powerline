@@ -29,7 +29,7 @@ install() {
 		python setup.py install --user
 	fi
 
-	pip install --user git+git://github.com/Lokaltog/powerline
+	pip install --upgrade --user git+git://github.com/Lokaltog/powerline
 
 	[ ! -d ~/.fonts ] && mkdir ~/.fonts
 

@@ -6,8 +6,8 @@
 			"after": "@"
 		},
 		"hostname": {
-			"before": "(",
-			"after": ")",
+			"before": "",
+			"after": "",
 			"args": {
 				"only_if_ssh": false
 			}
@@ -26,6 +26,10 @@
 	"segments": {
 		"left": [
 			{
+				"name": "user",
+				"draw_soft_divider": false
+			},
+			{
 				"name": "hostname"
 			},
 			{
@@ -37,7 +41,8 @@
 			{
 				"name": "cwd",
 				"args": {
-					"dir_limit_depth": 2,
+					"dir_shorten_len": 1,
+					"dir_limit_depth": 4,
 					"use_path_separator": true
 				}
 			}

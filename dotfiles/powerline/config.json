@@ -1,6 +1,7 @@
 {
 	"common": {
 		"term_truecolor": false,
+		"additional_escapes": false,
 		"dividers": {
 			"left": {
 				"hard": "",

@@ -17,6 +17,6 @@ install() {
 	./configure
 	make
 
-	ln -s $BASE/git/node/out/Release/node ~/bin/node
-	ln -s $BASE/git/node/deps/npm/cli.js ~/bin/npm
+	ln -sf $BASE/git/node/out/Release/node ~/bin/node
+	ln -sf $BASE/git/node/deps/npm/cli.js ~/bin/npm
 }
