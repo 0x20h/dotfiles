@@ -3,6 +3,8 @@ info() { echo "\033[1;32m$1\033[0m"; }
 title() { echo "\033[1;34m$1\033[0m"; }
 warn() { echo "\033[1;31m$1\033[0m"; }
 
+FILTER=${1:-"*"}
+
 pin() {
 	local pin=""
 	if [ ! -f $BASE/pins ]; then
@@ -20,22 +22,11 @@ pin() {
 	return 0
 }
 
-BASE=$(readlink -f $(dirname $0))
-cd $BASE
-
-if [ ! -d ~/bin ]; then
-	mkdir ~/bin
-fi
-
-if [ ! -d $BASE/git ]; then
-	mkdir $BASE/git
-fi
-
 dependencies() {
 	local deps=""
 	title "Fetching dependencies"
 	title "---------------------"
-	for s in install.d/*; do
+	for s in install.d/$FILTER; do
 		. $s
 		for r in $(depends); do
 			deps="$deps $r"
@@ -47,9 +38,21 @@ dependencies() {
 	sudo apt-get install $deps
 }
 
+BASE=$(readlink -f $(dirname $0))
+cd $BASE
+
+if [ ! -d ~/bin ]; then
+	mkdir ~/bin
+fi
+
+if [ ! -d $BASE/git ]; then
+	mkdir $BASE/git
+fi
+
+REPOS=$BASE/git
 dependencies
 
-for s in install.d/*; do
+for s in install.d/$FILTER; do
 	title "$s::install()"
 	. $s
 	install
