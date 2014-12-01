@@ -7,6 +7,12 @@ alias php="php -c ~/php.ini"
 
 # set vim as default editor
 export EDITOR=/usr/bin/vim
+
+# set grunt autocompletion
+if [ -x ~/bin/grunt ]; then
+	eval "$(grunt --completion=bash)"
+fi
+
 # bash options
 set 'bind bell-style none'
 set show-all-if-ambiguous on
