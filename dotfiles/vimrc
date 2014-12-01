@@ -158,7 +158,7 @@ function! Trim()
 	:%s# *$##g|''
 endfunction
 
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['php'], 'passive_filetypes': ['sh', 'rst', 'md'] }
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [], 'passive_filetypes': ['sh', 'rst', 'md', 'php'] }
 
 " ####################
 " textfiles
@@ -173,4 +173,4 @@ autocmd Filetype javascript set expandtab ts=2 shiftwidth=2
 
 " autoload syntax highlighting for typos
 autocmd BufRead * :source $HOME/.vim/bundle/syntax/typos.vim
-autocmd BufRead * :call LoadProjectSettings()
+autocmd BufReadPre * :call LoadProjectSettings()
