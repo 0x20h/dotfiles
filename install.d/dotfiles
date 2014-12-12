@@ -1,0 +1,32 @@
+#!/bin/sh
+
+depends() {
+	echo ""
+}
+
+install() {
+	if [ ! -d ~/bin ]; then
+		mkdir ~/bin
+	fi
+
+	# copy dotfiles
+	for i in $(ls $BASE/dotfiles); do
+		rm -rf ~/.$i
+		cp -r $BASE/dotfiles/$i ~/.$i
+	done
+
+	if [ -f $BASE/private-vimrc ]; then
+		# append private settings, place a private-vimrc in the base directory
+		# of the dotfiles repo
+		cat $BASE/private-vimrc >> ~/.vimrc
+	fi
+
+	cp $BASE/bin/* ~/bin
+
+	grep -q ".bash_custom" ~/.bashrc
+
+	if [ $? -ne 0 ]; then
+		info "adding bash_custom entry to your .bashrc"
+		echo "if [ -f ~/.bash_custom ]; then . ~/.bash_custom; fi" >> ~/.bashrc
+	fi
+}

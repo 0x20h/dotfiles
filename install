@@ -34,48 +34,35 @@ dependencies() {
 	done
 
 	deps=$(echo $deps | tr " " "\n" | sort | uniq | xargs)
-	title "Collected: '$deps', installing..."
-	sudo apt-get install $deps
+
+	if [ -z "$deps" ]; then
+		info "No dependencies found..."
+	else
+		info "Collected: '$deps', installing..."
+		sudo apt-get install $deps
+	fi
 }
 
 BASE=$(readlink -f $(dirname $0))
 cd $BASE
 
+dependencies
+
 if [ ! -d ~/bin ]; then
 	mkdir ~/bin
 fi
-
 if [ ! -d $BASE/git ]; then
 	mkdir $BASE/git
 fi
 
 REPOS=$BASE/git
-dependencies
 
+title "Installing"
 for s in install.d/$FILTER; do
-	title "$s::install()"
+	info "$s::install()"
 	. $s
 	install
 	cd $BASE
 done
 
-# copy dotfiles
-for i in $(ls dotfiles); do
-	rm -rf ~/.$i
-	cp -r dotfiles/$i ~/.$i
-done
-
-if [ -f private-vimrc ]; then
-	# append private settings, place a private-vimrc in this directory
-	cat private-vimrc >> ~/.vimrc
-fi
-
-cp bin/* ~/bin
-
-grep -q ".bash_custom" ~/.bashrc
-
-if [ $? -ne 0 ]; then
-	info "adding bash_custom entry to your .bashrc"
-	echo "if [ -f ~/.bash_custom ]; then . ~/.bash_custom; fi" >> ~/.bashrc
-fi
 
